@@ -19,6 +19,6 @@ after_success:
 
 # Take these images and push
 - docker push rcamsan/multi-client ./client
-- docker push rcamsan/multi-nginx ./nginx
+- docker push rcamsan/multi-nginx  ./nginx
 - docker push rcamsan/multi-server ./server
 - docker push rcamsan/multi-worker ./worker
