@@ -17,7 +17,7 @@ after_success:
 #Log in to the docker CLI
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" password-stdin
 
-# Take yhose images and push
+# Take these images and push
 - docker push rcamsan/multi-client ./client
 - docker push rcamsan/multi-nginx ./nginx
 - docker push rcamsan/multi-server ./server
