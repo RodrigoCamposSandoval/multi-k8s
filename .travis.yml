@@ -1,4 +1,6 @@
 sudo: required
+language: generic
+
 services:
   - docker
 
@@ -9,16 +11,14 @@ script:
   - docker run -e CI=true rcamsan/react-test npm test
 
 after_success:
-  docker build -t rcamsan/multi-client ./client
-  docker build -t rcamsan/multi-nginx ./nginx
-  docker build -t rcamsan/multi-server ./server
-  docker build -t rcamsan/multi-worker ./worker
-
-#Log in to the docker CLI
-- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" password-stdin
-
-# Take these images and push
-- docker push rcamsan/multi-client ./client
-- docker push rcamsan/multi-nginx  ./nginx
-- docker push rcamsan/multi-server ./server
-- docker push rcamsan/multi-worker ./worker
+  - docker build -t rcamsan/multi-client ./client
+  - docker build -t rcamsan/multi-nginx ./nginx
+  - docker build -t rcamsan/multi-server ./server
+  - docker build -t rcamsan/multi-worker ./worker
+  # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to docker hub
+  - docker push rcamsan/multi-client
+  - docker push rcamsan/multi-nginx
+  - docker push rcamsan/multi-server
+  - docker push rcamsan/multi-worker
