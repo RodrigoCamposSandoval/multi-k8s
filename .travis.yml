@@ -14,7 +14,7 @@ before_install:
   - gcloud config set project multi-8ks-302523
   - gcloud config set compute/zone us-central1-c
   - gcloud container clusters get-credentials cluster-1
-  - echoo "DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password
   - docker build -t rcamsan/react-test -f ./client/Dockerfile.dev ./client
 
 script:
